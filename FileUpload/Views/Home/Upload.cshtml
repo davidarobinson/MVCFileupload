@@ -1,0 +1,23 @@
+﻿@model FileUpload.Models.UploadViewModel
+@{
+    ViewBag.Title = "Upload";
+}
+
+<h2>Upload</h2>
+
+
+ @using (Html.BeginForm("upload", "home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{  
+     @Html.AntiForgeryToken()
+     @Html.ValidationSummary()
+    <fieldset>
+        <legend>                
+                <strong>Files</strong>
+        </legend>
+        <p>
+            <input type="text" id="UploadFilePath" name="UploadFilePath" class="uploadInput" />
+            <br />
+            <input type="submit" class="formAction" value="Upload File" />
+        </p>
+    </fieldset>
+}

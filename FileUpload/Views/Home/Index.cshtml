@@ -1,0 +1,36 @@
+﻿@model FileUpload.Models.FileUploadViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container">
+    <h2>Index</h2>
+    <div class="clearfix">
+        @using (Html.BeginForm("index", "home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary()
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    File Upload
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.UploadFilePath)
+                        <div class="input-group">
+
+                            @Html.TextBoxFor(m => m.UploadFilePath, new { @class = "form-control", type = "file" })
+                            <span class="input-group-btn">
+                                <input type="submit" class="btn btn-default" value="Upload File" />
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        @if (!string.IsNullOrEmpty(Model.Url))
+        {
+            <a href="@Model.Url" alt="" target="_blank">@Model.Url</a>
+        }
+    </div>
+</div>
